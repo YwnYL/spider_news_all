@@ -25,13 +25,13 @@ class InfoqSpider(scrapy.Spider):
     allowed_domains = ["infoq.com"]###?
     start_urls = (
             "http://www.infoq.com/cn/ai-ml-data-eng/news/0",
-            "http://www.infoq.com/cn/bigdata/news/0"
-            "http://www.infoq.com/cn/cloud-computing/news/0"
-            "http://www.infoq.com/cn/qukuailian/news/0"
+            "http://www.infoq.com/cn/bigdata/news/0",
+            "http://www.infoq.com/cn/cloud-computing/news/0",
+            "http://www.infoq.com/cn/qukuailian/news/0",
             "http://www.infoq.com/cn/ai-ml-data-eng/articles/0",
-            "http://www.infoq.com/cn/bigdata/articles/0"
-            "http://www.infoq.com/cn/cloud-computing/articles/0"
-            "http://www.infoq.com/cn/qukuailian/articles/0"
+            "http://www.infoq.com/cn/bigdata/articles/0",
+            "http://www.infoq.com/cn/cloud-computing/articles/0",
+            "http://www.infoq.com/cn/qukuailian/articles/0",
             "http://www.infoq.com/cn/development/news/0",
             "http://www.infoq.com/cn/architecture-design/news/0",
             "http://www.infoq.com/cn/development/articles/0",
@@ -137,6 +137,7 @@ class InfoqSpider(scrapy.Spider):
         item = SpiderNewsAllItem()
         day = title = type3 = keywords = url = article = ''
         url = response.url
+        url = re.sub('(?P<value>\?useSponsorshipSuggestions=true$)','',url)
         day = response.meta['day']
         title = response.meta['title']
         type3 = response.meta['type3']
